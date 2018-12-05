@@ -1,0 +1,51 @@
+//
+//  PrefixHeader.pch
+//  TestShopCart
+//
+//  Created by Crazy Wang on 2018/12/4.
+//  Copyright © 2018年 Crazy Wang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "Masonry.h"
+#import "MJExtension.h"
+
+
+
+#define APPDELEGATE ((AppDelegate*)([UIApplication sharedApplication].delegate))
+#define WIDTH [UIScreen mainScreen].bounds.size.width
+#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define NAV_HEIGHT (HEIGHT==812?88:64)
+#define TABBAR_HEIGHT (HEIGHT==812?83:49)
+
+#define USERS_LOCATION_MANAGER [getLocationManager manager]
+#define SYSTEM_VERSION [[UIDevice currentDevice].systemVersion floatValue]
+#define WidthAndHeightScale(a,b,c) a*b/c
+#define ADDSUB(x) [self.view addSubview:x]
+
+#define NEW_B_EQUAL(oldA,oldB,newA) (((newA)*(oldB))/(oldA))    // oldA/oldB=newA/newB  算其中一个
+#define NEW_WIDTH(oldW) NEW_B_EQUAL(375, oldW, WIDTH) //以6的屏幕宽度，适配宽度
+#define NEW_HEIGHT(oldH) NEW_B_EQUAL(667, oldH, HEIGHT)  //以6的屏幕高度，适配高度
+
+#define RGB(x,y,z) [UIColor colorWithRed:x/255.0f green:y/255.0f blue:z/255.0f alpha:1.0f]
+#define RGB_gray(x) [UIColor colorWithRed:x/255.0f green:x/255.0f blue:x/255.0f alpha:1.0f]
+#define RGBP(x,y,z,p) [UIColor colorWithRed:x/255.0f green:y/255.0f blue:z/255.0f alpha:p]
+#define UIColorFromRGBHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define ALERTSHOW(x) [SJKAlertView showWithMessage:(x)]
+#define ALERTSHOW_IN_CENTER(x) [SJKAlertView showWithMessageInCenter:(x)]
+#define POPVIEW [self.navigationController popViewControllerAnimated:YES]
+#define PUSHVIEW(x) [self.navigationController pushViewController:x animated:YES]
+
+
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...)
+#endif
+
+
+#endif /* PrefixHeader_pch */
