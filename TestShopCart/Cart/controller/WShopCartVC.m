@@ -79,10 +79,20 @@
     
     if ([dataDict[@"code"] integerValue] ==1) {
         
+        //法1.
+//        NSArray *sb = [WShopCartModel mj_objectArrayWithKeyValuesArray:dataDict[@"data"]];//mj的数据转model
         
-        NSArray *sb = [WShopCartModel mj_objectArrayWithKeyValuesArray:dataDict[@"data"]];//mj的数据转model
+        //法2.
+        for (NSDictionary *dsss in dataDict[@"data"]) {//自己写的model
+            
+            WShopCartModel *semodel = [[WShopCartModel alloc]init];
+            [semodel setValuesForKeysWithDictionary:dsss];
+            
+            [_wDataSouce addObject:semodel];
+        }
         
-        [_wDataSouce addObjectsFromArray:sb];
+        
+//        [_wDataSouce addObjectsFromArray:sb];
         [_wTableView reloadData];
         
     }else{
@@ -210,7 +220,7 @@
         WShopCartModel * seModel = _wDataSouce[indexPath.section];
         NSArray *daArr = seModel.shopData;
         WShopGoodsDetailModel *goodsModel = daArr[indexPath.row];
-        goodsModel.isEdit = seModel.isEdit;
+//        goodsModel.isEdit = seModel.isEdit;
         [cell setUIValue:goodsModel];
         
         //点击cell上的选中
